@@ -1,0 +1,26 @@
+{
+  "name": "news-to-me",
+  "version": "1.0.0",
+  "description": "To see the deployed app, click on the [Heroku Link](https://dashboard.heroku.com/apps/news-to-me-ch)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/calahhansen/News-to-me.git"
+  },
+  "author": "Calah Hansen",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/calahhansen/News-to-me/issues"
+  },
+  "homepage": "https://github.com/calahhansen/News-to-me#readme",
+  "dependencies": {
+    "axios": "^0.19.0",
+    "cheerio": "^1.0.0-rc.3",
+    "express": "^4.17.1",
+    "express-handlebars": "^3.1.0",
+    "mongoose": "^5.7.3"
+  }
+}
