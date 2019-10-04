@@ -1,6 +1,6 @@
 # News-to-me
 
-To see the deployed app, click on the [Heroku Link](https://dashboard.heroku.com/apps/news-to-me-ch)
+To see the deployed app, click on the [Heroku Link](https://news-to-me-ch.herokuapp.com/)
 
 ### Overview
 
