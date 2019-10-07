@@ -1,30 +1,29 @@
-// Using the tools and techniques you learned so far,
-// you will scrape a website of your choice, then place the data
-// in a MongoDB database. Be sure to make the database and collection
-// before running this exercise.
-
-// Consult the assignment files from earlier in class
-// if you need a refresher on Cheerio.
-
 // Dependencies
-var express = require("express");
-var mongojs = require("mongojs"); //Change this to mongoose?? Already installed mongoose
+const express = require("express");
+// const mongojs = require("mongojs"); //Change this to mongoose?? Already installed mongoose
+const mongoose = require('mongoose');
+
 // Require axios and cheerio. This makes the scraping possible
-var axios = require("axios");
-var cheerio = require("cheerio");
+const axios = require("axios");
+const cheerio = require("cheerio");
 
 // Initialize Express
-var app = express();
+const app = express();
 
 // Database configuration
-var databaseUrl = "scraper";
-var collections = ["scrapedData"];
+const databaseUrl = "scraper";
+const collections = ["scrapedData"];
 
 // Hook mongojs configuration to the db variable
-var db = mongojs(databaseUrl, collections);
-db.on("error", function(error) {
-  console.log("Database Error:", error);
-});
+// const db = mongojs(databaseUrl, collections);
+// db.on("error", function(error) {
+//   console.log("Database Error:", error);
+// });
+ 
+mongoose.connect('mongodb://localhost/my_database', {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+
 
 // Main route (simple Hello World Message)
 app.get("/", function(req, res) {
@@ -60,18 +59,18 @@ axios.get("https://www.badassquilterssociety.com/basically-badass-3/").then(func
 
   // Load the HTML into cheerio and save it to a variable
   // '$' becomes a shorthand for cheerio's selector commands, much like jQuery's '$'
-  var $ = cheerio.load(response.data);
+  const $ = cheerio.load(response.data);
 
   // An empty array to save the data that we'll scrape
-  var results = [];
+  const results = [];
 
   // Select each element in the HTML body from which you want information.
   // NOTE: Cheerio selectors function similarly to jQuery's selectors,
   // but be sure to visit the package's npm page to see how it works
   $("article").each(function(i, element) {
 
-    var title = $(element).find("a").text();
-    var link = $(element).find("a").attr("href");
+    const title = $(element).find("a").text();
+    const link = $(element).find("a").attr("href");
 
     // Save these results in an object that we'll push into the results array we defined earlier
     results.push({
