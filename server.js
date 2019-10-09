@@ -46,7 +46,7 @@ app.get("/scrape", function (req, res) {
     $("article").each(function (i, element) {
       //Save the results object
       const results = {};
-//Add the title and link and save as properties/keys in the array
+      //Add the title and link and save as properties/keys in the array
       results.title = $(this).children("a").text(); //this is referring to element I think...
       results.link = $(this).children("a").attr("href");
 
@@ -87,4 +87,4 @@ app.get("/scrape", function (req, res) {
   app.listen(3000, function () {
     console.log("App running on port 3000!");
   });
-
+})
