@@ -1,6 +1,6 @@
 # News-to-me
 
-To see the deployed app, click on the [Heroku Link](https://news-to-me-ch.herokuapp.com/)
+To see the deployed app, click on the [Heroku Link](https://git.heroku.com/news-to-me-ch.git)
 
 ## Overview
 
