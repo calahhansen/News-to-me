@@ -1,3 +1,5 @@
+//USED FROM CLASS ACTIVITY - NEED TO MODIFY TO FIT THE ASSIGNMENT
+
 // Grab the articles as a json
 $.getJSON("/blogs", function(data) {
     // For each one
