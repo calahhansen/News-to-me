@@ -5,17 +5,17 @@ $.getJSON("/blogs", function(data) {
     // For each one
     for (let i = 0; i < data.length; i++) {
       // Display the apropos information on the page
-      $("#blogs").append("<p data-id='" + data[i]._id + "'>" + data[i].title + "<br />" + data[i].link + "</p>");
+      $("#blogs").append("<h3 data-id='" + data[i]._id + "'>" + data[i].title + "<br />" + data[i].link + "</h3>");
     }
   });
   
   
-  // Whenever someone clicks a p tag
-  $(document).on("click", "p", function() {
+  // Whenever someone clicks a h3 tag
+  $(document).on("click", "h3", function() {
     // Empty the notes from the note section
     $("#comments").empty();
-    // Save the id from the p tag
-    var thisId = $(this).attr("data-id");
+    // Save the id from the h3 tag
+    const thisId = $(this).attr("data-id");
   
     // Now make an ajax call for the Article
     $.ajax({
@@ -36,7 +36,7 @@ $.getJSON("/blogs", function(data) {
   
         // If there's a note in the article
         if (data.comment) {
-          // Place the title of the note in the title input
+          // Place the commentor's name in the input
           $("#userNameInput").val(data.comment.userName);
           // Place the body of the note in the body textarea
           $("#commentInput").val(data.comment.comment);

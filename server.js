@@ -45,21 +45,24 @@ mongoose.connect(MONGODB_URI,
 
 // Routes
 // =============================================================
+
 // Route 1
 // =======
-// This route will be used to route the user between html pages (not sure if this is really needed or not???)
-require("./routes/html-routes.js")(app);
+// This route will be used to route the handlebar pages (not sure about how to get this working....)
+require("./routes/router.js")(app);
+
 // Route 2
 // =======
 // When you visit this route, the server will
-// scrape data from the site of your choice, and save it to
-// MongoDB.
+// scrape data from the site of your choice, and save it to MongoDB.
+// This route is working and scraping and pushing into the database!!!
 require("./routes/scrape.js")(app);
+
 // Route 3
 // =======
 // This route will retrieve all of the data
-// from the scrapedData collection as a json (this will be populated
-// by the data you scrape using the next route)
+// from the scrapedData collection as a json 
+//NOT WORKING...
 require("./routes/db-routes.js")(app);
 
 
