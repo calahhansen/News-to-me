@@ -26,10 +26,22 @@ app.use(express.json());
 app.use(express.static("public"));
 
 //Connect to Mongo DB 
-mongoose.connect('mongodb://localhost/newsDB', {
-  useNewUrlParser: true
-});
+// mongoose.connect('mongodb://localhost/mongoHeadlines', {
+//   useNewUrlParser: true
+// });
 
+// If deployed, use the deployed database. Otherwise use the local mongoHeadlines database
+// const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines";
+
+// mongoose.connect(MONGODB_URI);
+
+//Grabbed from Slack - Julie's comments
+mongoose.connect("mongodb://localhost/mongoHeadlines",
+  { useNewUrlParser: true , useUnifiedTopology: true})
+  .then(() => console.log('DB Connected!'))
+  .catch(err => {
+    console.log("DB Connection Error:", err.message);
+  });;
 
 // Main route (GET to scrape the badassquilters website)
 app.get("/scrape", function (req, res) {
