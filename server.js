@@ -5,11 +5,11 @@ const logger = require("morgan");
 const mongoose = require('mongoose');
 
 // Require axios and cheerio. This makes the scraping possible
-const axios = require("axios");
-const cheerio = require("cheerio");
+// const axios = require("axios"); moved to routes/scrape.js
+// const cheerio = require("cheerio"); moved to routes/scrape.js
 
 //Require all models
-const db = require("./models");
+//const db = require("./models"); moved to routes/db-routes.js
 
 // Initialize Express
 const app = express();
@@ -20,8 +20,8 @@ const PORT = 3000;
 
 app.use(logger("dev"));
 //Parse request body as JSON
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
+app.use(express.urlencoded({ extended: true })); //added to routes/scrape.js
+app.use(express.json()); //added to routes/scrape.js
 // Static Folder is "public"
 app.use(express.static("public"));
 
@@ -45,33 +45,26 @@ mongoose.connect(MONGODB_URI,
 
 // Routes
 // =============================================================
-require("./routes/html-routes.js")(app);
-require("./routes/scrape.js")(app);
-require("./routes/db-routes.js")(app);
-
-
-
-
-// TODO: make two more routes
-
 // Route 1
 // =======
-// This route will retrieve all of the data
-// from the scrapedData collection as a json (this will be populated
-// by the data you scrape using the next route)
-
+// This route will be used to route the user between html pages (not sure if this is really needed or not???)
+require("./routes/html-routes.js")(app);
 // Route 2
 // =======
 // When you visit this route, the server will
 // scrape data from the site of your choice, and save it to
 // MongoDB.
-// TIP: Think back to how you pushed website data
-// into an empty array in the last class. How do you
-// push it into a MongoDB collection instead?
+require("./routes/scrape.js")(app);
+// Route 3
+// =======
+// This route will retrieve all of the data
+// from the scrapedData collection as a json (this will be populated
+// by the data you scrape using the next route)
+require("./routes/db-routes.js")(app);
 
-/* -/-/-/-/-/-/-/-/-/-/-/-/- */
 
-// Listen on port 3000
+// EXPRESS APP - Listen on port 3000
+//db.
 app.listen(PORT, function () {
-  console.log("App running on port 3000!");
+  console.log("Express App Server listening on PORT " + PORT);
 });
