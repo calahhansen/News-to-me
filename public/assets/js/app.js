@@ -5,7 +5,9 @@ $.getJSON("/blogs", function(data) {
     // For each one
     for (let i = 0; i < data.length; i++) {
       // Display the apropos information on the page
-      $("#blogs").append("<h3 data-id='" + data[i]._id + "'>" + data[i].title + "<br />" + data[i].link + "</h3>");
+      
+      $("#blogs").append(
+        "<div id='blogs' class='card'><div class='card-header'><h3><a id='blogs' class='article-link' target='_blank' rel='noopener noreferrer' data-id='" + data[i]._id + "' href='" + data[i].link +"'>" + data[i].title + "</a><a class='btn btn-success save'>Save Article</a></h3></div><div class='card-body'>Blog Article text</div></div>");
     }
   });
   
