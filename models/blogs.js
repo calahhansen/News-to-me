@@ -12,12 +12,12 @@ const BlogsSchema = new Schema({
         type: String,
         required: true
     },
-    image: String,
-    summary: String,
-    comments: {
-        type: Schema.Types.ObjectId, //NOT SURE HOW this can apply/connect to comments
-        ref: "Comments"
-    }
+    // image: String,
+    // summary: String,
+    // comments: {
+    //     type: Schema.Types.ObjectId, //NOT SURE HOW this can apply/connect to comments
+    //     ref: "Comments"
+    // }
 });
 
 const Blogs = mongoose.model("Blogs", BlogsSchema);

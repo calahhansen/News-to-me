@@ -1,16 +1,17 @@
 // Dependencies
-const express = require("express");
+// const express = require("express");
+const db = require("../models");
 
 // Require axios and cheerio. This makes the scraping possible
 const axios = require("axios");
 const cheerio = require("cheerio");
 
 // Initialize Express
-const app = express();
+// const app = express();
 
-//Parse request body as JSON
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
+// //Parse request body as JSON
+// app.use(express.urlencoded({ extended: true }));
+// app.use(express.json());
 
 // Routes
 // =============================================================
@@ -27,23 +28,31 @@ module.exports = function (app) {
             // Select each element in the HTML body from which you want information.
             // NOTE: Cheerio selectors function similarly to jQuery's selectors,
             // but be sure to visit the package's npm page to see how it works
-            $("article").each(function (i, element) {
+            $("article.et_pb_post").each(function (i, element) {
                 //Save the results object
                 const results = {};
                 //Add the title and link and save as properties/keys in the array
-                results.title = $(this).children("a").text(); //this is referring to element I think...
-                results.link = $(this).children("a").attr("href");
+                results.title = $(this).find("h2").children("a").text(); //this is referring to element I think...
+                results.link = $(this).find("h2").children("a").attr("href");
+                console.log(results);
+                // Save these results into db
+                // Create a new Article using the `result` object built from scraping
+                db.Blogs.create(results)
+                    .then(function (dbBlogs) {
+                        // View the added result in the console
+                        console.log(dbBlogs);
+                    })
+                    .catch(function (err) {
+                        // If an error occurred, log it
+                        console.log(err);
+                    });
 
-                // Save these results and push into result array
-                results.push({
-                    title: title,
-                    link: link
-                });
+
             });
 
             // Log the results once you've looped through each of the elements found with cheerio
-            console.log(results);
-            res.send("connected")
+            // console.log(results);
+            // res.send("connected")
 
         });
     })
