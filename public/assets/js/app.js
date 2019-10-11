@@ -1,4 +1,4 @@
-//USED FROM CLASS ACTIVITY - NEED TO MODIFY TO FIT THE ASSIGNMENT
+//USED FROM CLASS ACTIVITY - MODIFY TO FIT THE ASSIGNMENT
 
 // Grab the articles as a json
 $.getJSON("/blogs", function(data) {
@@ -7,9 +7,20 @@ $.getJSON("/blogs", function(data) {
       // Display the apropos information on the page
       
       $("#blogs").append(
-        "<div id='blogs' class='card'><div class='card-header'><h3><a id='blogs' class='article-link' target='_blank' rel='noopener noreferrer' data-id='" + data[i]._id + "' href='" + data[i].link +"'>" + data[i].title + "</a><a class='btn btn-success save'>Save Article</a></h3></div><div class='card-body'>Blog Article text</div></div>");
+        "<div id='blogs' class='card'><div class='card-header'><h3><a id='blogs' class='article-link' target='_blank' rel='noopener noreferrer' data-id='" + data[i]._id + "' href='" + data[i].link +"'>" + data[i].title + "</a><a data-id='" + data[i]._id + "' class='btn btn-success save'>Save Article</a></h3></div><div class='card-body'>Blog Article text</div></div>");
     }
   });
+
+  //Whenever someone clicks on the Save Article button
+  // $(document).on("click", ".save", function() {
+    //Save the id from the article
+    // const thisId = $(this).attr("data-id");
+    //Do I need an ajax call??
+  //   $.ajax({
+  //     method: "PUT",
+  //     url: ""
+  //       })
+  // })
   
   
   // Whenever someone clicks a h3 tag
@@ -49,7 +60,7 @@ $.getJSON("/blogs", function(data) {
   // When you click the savenote button
   $(document).on("click", "#save-comment", function() {
     // Grab the id associated with the article from the submit button
-    var thisId = $(this).attr("data-id");
+    const thisId = $(this).attr("data-id");
   
     // Run a POST request to change the note, using what's entered in the inputs
     $.ajax({
