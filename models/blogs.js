@@ -13,7 +13,10 @@ const BlogsSchema = new Schema({
         required: true
     },
     // image: String,
-    // summary: String,
+    summary: {
+        type: String,
+        required: true
+    }
     // comments: {
     //     type: Schema.Types.ObjectId, //NOT SURE HOW this can apply/connect to comments
     //     ref: "Comments"

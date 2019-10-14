@@ -34,6 +34,7 @@ module.exports = function (app) {
                 //Add the title and link and save as properties/keys in the array
                 results.title = $(this).find("h2").children("a").text(); //this is referring to element I think...
                 results.link = $(this).find("h2").children("a").attr("href");
+                results.summary = $(this).find("p").text();
                 console.log(results);
                 // Save these results into db
                 // Create a new Article using the `result` object built from scraping

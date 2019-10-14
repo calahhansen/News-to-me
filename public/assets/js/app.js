@@ -7,7 +7,7 @@ $.getJSON("/blogs", function(data) {
       // Display the apropos information on the page
       
       $("#blogs").append(
-        "<div id='blogs' class='card'><div class='card-header'><h3><a id='blogs' class='article-link' target='_blank' rel='noopener noreferrer' data-id='" + data[i]._id + "' href='" + data[i].link +"'>" + data[i].title + "</a><a data-id='" + data[i]._id + "' class='btn btn-success save'>Save Article</a></h3></div><div class='card-body'>Blog Article text</div></div>");
+        "<div id='blogs' class='card'><div class='card-header'><h3><a id='blogs' class='article-link' target='_blank' rel='noopener noreferrer' data-id='" + data[i]._id + "' href='" + data[i].link +"'>" + data[i].title + "</a><a data-id='" + data[i]._id + "' class='btn btn-success save'>Save Article</a></h3></div><div class='card-body'>" + data[i].summary + "</div></div>");
     }
   });
 
@@ -21,6 +21,9 @@ $.getJSON("/blogs", function(data) {
   //     url: ""
   //       })
   // })
+
+  //Whenever someone clicks on the Scrape New Articles button
+  $(document).on("click", )
   
   
   // Whenever someone clicks a h3 tag

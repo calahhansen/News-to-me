@@ -24,7 +24,7 @@ module.exports = function (app) {
 
   router.post("/api/blogs", function (req, res) {
     blogs.create([
-      "title", "link"
+      "title", "link", "summary"
     ], [
       req.body.title, req.body.link
     ], function (result) {
